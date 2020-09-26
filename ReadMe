@@ -1,0 +1,29 @@
+
+
+install the node.js
+
+initialized and setup the project using *npm init*
+
+installed the dependencies like *mongoose*
+
+setup the webserver contents using *express* and *body-parser*
+
+created the database config js file with module.exports
+
+add database configuration on server.js file
+
+create the route file *movie.routes.js*
+
+now, created controller named movie.controller.js
+
+//For setup postgres
+npm i express pg
+
+install postgres
+
+install pgAdmin
+
+create server, database and tables
+
+
+Ref: https://www.callicoder.com/node-js-express-mongodb-restful-crud-api-tutorial/
