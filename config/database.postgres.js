@@ -32,6 +32,28 @@ const getUsers = (request, response) => {
     })
 }
 
+const getByUserId = (request, response) => {
+  const id = parseInt(request.params.id)
+
+  pool.query('SELECT * FROM seen_movies WHERE user_id = $1', [id], (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
+}
+
+const getByMovieId = (request, response) => {
+  const id = parseInt(request.params.id)
+
+  pool.query('SELECT * FROM seen_movies WHERE movie_id = $1', [id], (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
+}
+
 const getUserById = (request, response) => {
   const id = parseInt(request.params.id)
 
@@ -45,7 +67,7 @@ const getUserById = (request, response) => {
 
 const getUserByIdPwd = (request, response) => {
     const { user_name, password } = request.body
-  
+    
     pool.query('SELECT * FROM usere WHERE user_name = $1 AND password = $2', [user_name, password], (error, results) => {
       if (error) {
         throw error
@@ -55,13 +77,24 @@ const getUserByIdPwd = (request, response) => {
   }
 
 const createUser = (request, response) => {
-  const { name, email } = request.body
+  const { user_name, birthdate, email, password, role, gender } = request.body
 
-  pool.query('INSERT INTO users (name, email) VALUES ($1, $2)', [name, email], (error, results) => {
+  pool.query('INSERT INTO usere (user_name, birthdate, email, password, role, gender) VALUES ($1, $2, $3, $4, $5, $6)', [user_name, birthdate, email, password, role, gender], (error, result) => {
     if (error) {
       throw error
     }
-    response.status(201).send(`User added with ID: ${result.insertId}`)
+    response.status(201).send('success')
+  })
+}
+
+const createSeenMovie = (request, response) => {
+  const { user_id, movie_id } = request.body
+
+  pool.query('INSERT INTO seen_movies (user_id, movie_id) VALUES ($1, $2)', [user_id, movie_id], (error, result) => {
+    if (error) {
+      throw error
+    }
+    response.status(201).send('success')
   })
 }
 
@@ -99,4 +132,8 @@ module.exports = {
   updateUser,
   deleteUser,
   getUserByIdPwd,
+
+  getByUserId,
+  getByMovieId,
+  createSeenMovie,
 }

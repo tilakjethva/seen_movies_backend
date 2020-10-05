@@ -25,5 +25,27 @@ install pgAdmin
 
 create server, database and tables
 
+--->
+
+download wildfly and apiman and unzip it
+
+./bin/standalone.sh -c standalone-apiman.xml
+
+login with admin and admin123! as a username and password
+
+Create an Organization 
+
+Manage an API
+
+
+----> Keycloak
+
+localhost:8080/auth
+
+login with the same username and password -- admin and admin123!
+
+add realm
+
+
 
 Ref: https://www.callicoder.com/node-js-express-mongodb-restful-crud-api-tutorial/

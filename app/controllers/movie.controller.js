@@ -3,7 +3,7 @@ const Movie = require('../models/movie.model.js');
 // Create and Save a new movie
 exports.create = (req, res) => {
     // Validate request
-    if(!req.body.title || !req.body.releaseDate || !req.body.category || !req.body.movieDirector) {
+    if(!req.body.title) {
         return res.status(400).send({
             message: "movie content can not be empty"
         });
@@ -14,7 +14,14 @@ exports.create = (req, res) => {
         title: req.body.title,
         releaseDate: req.body.releaseDate,
         category: req.body.category,
-        movieDirector: req.body.movieDirector
+        movieDirector: req.body.movieDirector,
+        img: req.body.img,
+        rating: req.body.rating,
+        description: req.body.description,
+        written_by: req.body.written_by,
+        produce_by: req.body.produce_by,
+        cast: req.body.cast,
+        comments: req.body.comments
     });
 
     // Save movie in the database
@@ -76,7 +83,14 @@ exports.update = (req, res) => {
         title: req.body.title,
         releaseDate: req.body.releaseDate,
         category: req.body.category,
-        movieDirector: req.body.movieDirector
+        movieDirector: req.body.movieDirector,
+        img: req.body.img,
+        rating: req.body.rating,
+        description: req.body.description,
+        written_by: req.body.written_by,
+        produce_by: req.body.produce_by,
+        cast: req.body.cast,
+        comments: req.body.comments
     }, {new: true})
     .then(movie => {
         if(!movie) {

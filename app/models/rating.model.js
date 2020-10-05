@@ -2,10 +2,9 @@ const mongoose = require('mongoose');
 
 const RatingSchema = mongoose.Schema({
     rating: String,
-    commentTitle: String,
-    commentContent: String,
-    userId: String,
-    movieId: String
+    comment: String,
+    user_id: String,
+    movie_id: String
 }, {
     timestamps: true
 });
